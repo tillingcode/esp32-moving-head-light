@@ -160,7 +160,7 @@ module led_assembly() {
 
 // MAIN ENCLOSURE (Tennis Ball Shape)
 module enclosure_shell() {
-    color([0.2, 0.2, 0.2], alpha=0.3) {
+    color([0.2, 0.2, 0.2, 0.3]) {
         difference() {
             // Outer sphere
             sphere(r=RADIUS, $fn=DETAIL_LEVEL);
@@ -253,7 +253,7 @@ module battery_mount() {
 
 // CONNECTOR CABLES (Visual)
 module internal_wiring() {
-    color([1, 1, 0], alpha=0.5) {
+    color([1, 1, 0, 0.5]) {
         // Pan servo wire
         hull() {
             translate([0, 0, -RADIUS + 8]) sphere(r=1, $fn=8);
