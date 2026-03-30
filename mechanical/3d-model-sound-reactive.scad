@@ -4,10 +4,21 @@
 // Created: 2026-03-30
 
 // ============================================================================
-// NEW PARAMETERS FOR SOUND REACTIVITY
+// PARAMETERS & CONFIGURATION (Shared with base model)
 // ============================================================================
 
-// Microphone specifications
+// Main enclosure
+DIAMETER = 65;  // 6.5 cm tennis ball size
+RADIUS = DIAMETER / 2;
+WALL_THICKNESS = 2;  // 2mm PLA walls
+DETAIL_LEVEL = 32;  // $fn for smooth curves
+
+// USB-C port
+USB_C_WIDTH = 9;
+USB_C_HEIGHT = 6;
+USB_C_DEPTH = 3;
+
+// Microphone specifications (NEW)
 MIC_MODULE_WIDTH = 28;   // INMP441 I2S microphone module
 MIC_MODULE_HEIGHT = 15;
 MIC_MODULE_LENGTH = 38;
@@ -17,7 +28,96 @@ SOUND_PORT_DIAMETER = 8;  // 8mm opening for sound intake
 SOUND_PORT_DEPTH = 5;
 
 // ============================================================================
-// MICROPHONE MOUNT MODULE (New)
+// UTILITY MODULES (From base model)
+// ============================================================================
+
+// Internal mounting frame (simplified from base)
+module internal_frame() {
+    color([0.7, 0.7, 0.7]) {
+        // Frame posts for servo mounting
+        translate([0, 0, 0]) cylinder(r=3, h=40, center=true, $fn=DETAIL_LEVEL);
+    }
+}
+
+// Pan assembly (simplified)
+module pan_assembly() {
+    color([0.8, 0.2, 0.2]) {
+        translate([0, 0, -RADIUS + 8]) {
+            cube([50, 23, 22.5], center=true);
+        }
+    }
+}
+
+// Tilt assembly (simplified)
+module tilt_assembly() {
+    color([0.2, 0.8, 0.2]) {
+        translate([RADIUS - 15, 0, 0]) {
+            cube([8, 6, 25], center=true);
+        }
+    }
+}
+
+// Roll assembly (simplified)
+module roll_assembly() {
+    color([0.2, 0.2, 0.8]) {
+        translate([0, 0, RADIUS - 8]) {
+            cube([10, 10, 6], center=true);
+        }
+    }
+}
+
+// LED assembly (simplified)
+module led_assembly() {
+    color([1, 1, 0]) {
+        translate([0, -RADIUS + 5, 0]) {
+            union() {
+                cylinder(r=3.5, h=8, center=true, $fn=DETAIL_LEVEL);
+                translate([0, 0, 6]) {
+                    cylinder(r1=5, r2=8, h=8, $fn=DETAIL_LEVEL);
+                }
+            }
+        }
+    }
+}
+
+// PCB mount
+module pcb_mount() {
+    color([0.2, 0.6, 0.2]) {
+        translate([0, 0, -20]) {
+            difference() {
+                cube([60, 30, 8], center=true);
+                translate([15, 0, 0]) cylinder(r=2, h=9, center=true, $fn=12);
+                translate([-15, 0, 0]) cylinder(r=2, h=9, center=true, $fn=12);
+            }
+        }
+    }
+}
+
+// Battery mount
+module battery_mount() {
+    color([1, 0.5, 0]) {
+        translate([0, 15, -15]) {
+            union() {
+                cylinder(r=10, h=70, center=true, $fn=DETAIL_LEVEL);
+                translate([0, 0, 35]) cube([8, 20, 4], center=true);
+            }
+        }
+    }
+}
+
+// Internal wiring
+module internal_wiring() {
+    color([1, 1, 0, 0.5]) {
+        // Visual wiring paths
+        hull() {
+            translate([0, 0, -RADIUS + 8]) sphere(r=1, $fn=8);
+            translate([5, 0, -5]) sphere(r=1, $fn=8);
+        }
+    }
+}
+
+// ============================================================================
+// MICROPHONE MOUNT MODULES (NEW)
 // ============================================================================
 
 module microphone_mount() {
@@ -32,7 +132,7 @@ module microphone_mount() {
                 cube([MIC_MODULE_WIDTH, MIC_MODULE_HEIGHT, 8.5], center=true);
             }
             
-            // Screw holes (2×)
+            // Screw holes (2x)
             translate([-12, 0, 0]) cylinder(r=1.5, h=9, center=true, $fn=16);
             translate([12, 0, 0]) cylinder(r=1.5, h=9, center=true, $fn=16);
         }
@@ -44,7 +144,6 @@ module microphone_mount() {
     }
 }
 
-// Microphone module housing
 module microphone_housing() {
     color([0.3, 0.3, 0.3]) {
         union() {
@@ -59,7 +158,6 @@ module microphone_housing() {
     }
 }
 
-// Sound port opening on enclosure
 module sound_port_opening() {
     // Port for acoustic input
     translate([RADIUS - WALL_THICKNESS - 1, 0, 0]) {
@@ -67,7 +165,7 @@ module sound_port_opening() {
             // Main port opening
             cylinder(r=SOUND_PORT_DIAMETER/2, h=SOUND_PORT_DEPTH, $fn=DETAIL_LEVEL);
             
-            // Acoustic funnel (optional, 3D printed detail)
+            // Acoustic funnel
             translate([0, 0, SOUND_PORT_DEPTH/2]) {
                 cylinder(r1=SOUND_PORT_DIAMETER/2, r2=SOUND_PORT_DIAMETER/2 + 2, 
                         h=4, $fn=DETAIL_LEVEL);
@@ -76,7 +174,6 @@ module sound_port_opening() {
     }
 }
 
-// Microphone mounting post (internal)
 module microphone_mount_post() {
     color([0.4, 0.4, 0.4]) {
         translate([RADIUS - 25, 0, -RADIUS + 20]) {
@@ -90,41 +187,43 @@ module microphone_mount_post() {
 }
 
 // ============================================================================
-// UPDATED ENCLOSURE WITH SOUND PORT
+// ENCLOSURE WITH SOUND PORT
 // ============================================================================
 
 module enclosure_shell_with_sound_port() {
-    difference() {
-        // Start with original sphere
-        sphere(r=RADIUS, $fn=DETAIL_LEVEL);
-        
-        // Inner hollow
-        sphere(r=RADIUS - WALL_THICKNESS, $fn=DETAIL_LEVEL);
-        
-        // Remove bottom for assembly
-        translate([0, 0, -RADIUS-5]) {
-            cube([DIAMETER+10, DIAMETER+10, 10], center=true);
-        }
-        
-        // LED lens opening (front)
-        translate([0, -RADIUS-1, 5]) {
-            cylinder(r=8, h=5, $fn=DETAIL_LEVEL);
-        }
-        
-        // USB-C port opening (bottom)
-        translate([0, 0, -RADIUS+3]) {
-            cube([USB_C_WIDTH, USB_C_DEPTH, USB_C_HEIGHT], center=true);
-        }
-        
-        // SOUND PORT (NEW - Side opening for microphone)
-        translate([RADIUS - 1, 0, 0]) {
-            cylinder(r=SOUND_PORT_DIAMETER/2, h=4, $fn=DETAIL_LEVEL);
+    color([0.2, 0.2, 0.2, 0.3]) {
+        difference() {
+            // Start with original sphere
+            sphere(r=RADIUS, $fn=DETAIL_LEVEL);
+            
+            // Inner hollow
+            sphere(r=RADIUS - WALL_THICKNESS, $fn=DETAIL_LEVEL);
+            
+            // Remove bottom for assembly
+            translate([0, 0, -RADIUS-5]) {
+                cube([DIAMETER+10, DIAMETER+10, 10], center=true);
+            }
+            
+            // LED lens opening (front)
+            translate([0, -RADIUS-1, 5]) {
+                cylinder(r=8, h=5, $fn=DETAIL_LEVEL);
+            }
+            
+            // USB-C port opening (bottom)
+            translate([0, 0, -RADIUS+3]) {
+                cube([USB_C_WIDTH, USB_C_DEPTH, USB_C_HEIGHT], center=true);
+            }
+            
+            // SOUND PORT (NEW - Side opening for microphone)
+            translate([RADIUS - 1, 0, 0]) {
+                cylinder(r=SOUND_PORT_DIAMETER/2, h=4, $fn=DETAIL_LEVEL);
+            }
         }
     }
 }
 
 // ============================================================================
-// UPDATED COMPLETE ASSEMBLY
+// COMPLETE ASSEMBLY WITH SOUND REACTIVITY
 // ============================================================================
 
 module complete_assembly_with_sound() {
@@ -153,17 +252,14 @@ module complete_assembly_with_sound() {
     battery_mount();
     
     // MICROPHONE COMPONENTS (NEW)
-    // Microphone mount post (internal)
     microphone_mount_post();
     
-    // Microphone bracket
     translate([RADIUS - 25, 0, -RADIUS + 20]) {
         rotate([0, 90, 0]) {
             microphone_mount();
         }
     }
     
-    // Microphone module
     translate([RADIUS - 18, 0, -RADIUS + 20]) {
         rotate([0, 90, 0]) {
             microphone_housing();
@@ -175,7 +271,7 @@ module complete_assembly_with_sound() {
 }
 
 // ============================================================================
-// PRINTABLE PARTS - UPDATED
+// PRINTABLE PARTS - SOUND REACTIVE
 // ============================================================================
 
 // Part 11: Microphone Mount Bracket (NEW)
@@ -191,18 +287,18 @@ module microphone_post_printable() {
 }
 
 // ============================================================================
-// RENDER OPTIONS
+// RENDER
 // ============================================================================
 
 // Full assembly with sound reactivity
 complete_assembly_with_sound();
 
-// Export individual parts:
+// Export individual parts (uncomment to render):
 // microphone_bracket_printable();
 // microphone_post_printable();
 
 // ============================================================================
-// NOTES FOR SOUND REACTIVE VERSION
+// NOTES
 // ============================================================================
 //
 // MICROPHONE SPECIFICATIONS:
@@ -210,8 +306,7 @@ complete_assembly_with_sound();
 // - Interface: I2S digital audio
 // - Sensitivity: -26 dBFS @ 94 dB SPL
 // - Frequency response: 50 Hz - 20 kHz
-// - Supply: 3.3V
-// - Current: ~5mA
+// - Supply: 3.3V, Current: ~5mA
 //
 // WIRING (ESP32 to INMP441):
 // - SCK (Clock):  GPIO 14
@@ -221,23 +316,13 @@ complete_assembly_with_sound();
 // - VCC: 3.3V
 //
 // ACOUSTIC DESIGN:
-// - Sound port diameter: 8mm (optimized for speech/music)
-// - Acoustic funnel focuses sound to microphone
-// - Internal channel routes audio to sensor
-// - Minimal reflections (rounded surfaces)
+// - Sound port diameter: 8mm
+// - Acoustic funnel focuses sound
+// - Internal channel routes audio
 //
-// 3D PRINTING ADDITIONS:
-// - Part 11: Microphone bracket (~30 min, 3g PLA)
-// - Part 12: Mount post (~20 min, 2g PLA)
-// - Total additional print time: ~50 minutes
-// - Total additional material: ~5g (~$0.04)
-//
-// ASSEMBLY NOTES:
-// 1. Mount microphone bracket to side post
-// 2. Secure INMP441 module in bracket
-// 3. Route I2S cables through internal channel
-// 4. Connect to ESP32 I2S pins
-// 5. Ensure acoustic path is clear
-// 6. Test audio levels before final assembly
+// 3D PRINTING:
+// - Part 11: Microphone bracket (~30 min, 3g)
+// - Part 12: Mount post (~20 min, 2g)
+// - Total: ~50 min print time, 5g material
 //
 // ============================================================================
