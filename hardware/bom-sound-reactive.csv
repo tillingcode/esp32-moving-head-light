@@ -1,0 +1,77 @@
+Component,Quantity,Unit Cost,Total Cost,Supplier,Part Number,Notes
+MICROCONTROLLER,,,,,
+ESP32-WROOM-32D DevKit,1,$10,$10,Amazon/AliExpress,ESP32-DEVKIT,WiFi + Bluetooth + Dual Core
+,,,,
+SERVO MOTORS,,,,,
+SG90 Micro Servo (Pan),1,$4,$4,Amazon/AliExpress,SG90,1.7kg·cm torque 60°/sec
+SG90 Micro Servo (Tilt),1,$4,$4,Amazon/AliExpress,SG90,1.7kg·cm torque 60°/sec
+SG90 Micro Servo (Roll),1,$4,$4,Amazon/AliExpress,SG90,1.7kg·cm torque 60°/sec
+,,,,
+LED & LIGHTING,,,,,
+WS2812B RGB Addressable LED,1,$2,$2,AliExpress,WS2812B,5050 package 16M colors
+Resistor 470Ω (1/4W),1,$0.10,$0.10,Local/Amazon,470R-1/4W,Resistor array recommended
+Capacitor 1000µF,1,$0.20,$0.20,Local/Amazon,CAP1000UF,Electrolytic capacitor
+,,,,
+POWER MANAGEMENT,,,,,
+USB-C Connector Module,1,$2,$2,Amazon,USB-C-PD,USB PD 5V 2A recommended
+TP4056 Li-ion Charger Module,1,$2,$2,AliExpress,TP4056,1A charging module
+18650 Li-ion Battery,1,$3,$3,Amazon,18650-protected,Protected cell recommended
+Battery holder/connector,1,$1,$1,Amazon,18650-holder,2-pin JST connector
+USB-C Cable,1,$1,$1,Amazon,USB-C-cable,1m length
+,,,,
+BREADBOARDING & ASSEMBLY,,,,,
+Breadboard 830-pin,1,$3,$3,Amazon,BB-830,Full size for prototyping
+Jumper wire kit (M-M),1,$2,$2,Amazon,jumper-kit,65 pieces assorted
+Servo connector wires,3,$0.50,$1.50,AliExpress,servo-wire,3-pin headers
+Pin headers & sockets,1,$1,$1,Amazon,pin-header-kit,Assorted sizes
+,,,,
+AUDIO INPUT (SOUND REACTIVE) - NEW,,,,,
+INMP441 I2S Microphone Module,1,$7,$7,AliExpress,INMP441,Digital audio I2S output
+Microphone breakout PCB,1,$1,$1,AliExpress,mic-breakout,Pre-assembled board
+I2S Cable connectors,4,$0.30,$1.20,Amazon,JST-PH,Mini connectors for I2S lines
+Acoustic foam insert (optional),1,$2,$2,Amazon,foam-acoustic,5mm self-adhesive
+,,,,
+MECHANICAL & FASTENERS,,,,,
+M2.5 Screws (20pcs),1,$0.50,$0.50,Amazon,M2.5-screw,Phillips head
+M2.5 Nuts,1,$0.30,$0.30,Amazon,M2.5-nut,Square nuts
+Cyanoacrylate Glue (super glue),1,$1,$1,Local,CA-glue,Small bottle
+Epoxy resin (2-part),1,$2,$2,Local,epoxy-2part,5-min cure recommended
+Heat shrink tubing assortment,1,$1,$1,Amazon,heat-shrink-kit,Assorted sizes
+Velcro cable ties,1,$1,$1,Amazon,velcro-ties,Reusable management
+,,,,
+3D PRINTING MATERIAL,,,,,
+PLA Filament (for enclosure),100g,$1,$1,Amazon/AliExpress,PLA-filament,~$7-10 per kg
+,,,TOTAL:,$78-80,,"Additional ~$8 for sound reactivity"
+,,,,
+OPTIONAL ADDITIONS,,,,,
+Resistor pack (assorted),1,$1,$1,Amazon,resistor-assorted,For prototyping
+Capacitor pack (assorted),1,$1,$1,Amazon,capacitor-assorted,For prototyping
+Diode 1N4007,4,$0.05,$0.20,Amazon,1N4007,Protection diodes
+Transistor NPN (2N3904),2,$0.10,$0.20,Amazon,2N3904,Signal buffering (optional)
+Buck converter 5V/3A,1,$2,$2,Amazon,buck-converter,Power supply backup
+,,,,
+TOOLS (One-time cost - not per unit),,,,,
+Soldering iron (30W),1,$15,$15,Amazon,soldering-iron,With stand and solder
+Solder (lead-free 1oz),1,$5,$5,Amazon,solder-LF,For connections
+Wire stripper/cutter,1,$5,$5,Amazon,wire-stripper,Multi-function tool
+USB meter (multimeter),1,$10,$10,Amazon,multimeter-USB,Power measurement
+Tweezers precision set,1,$8,$8,Amazon,tweezers-set,SMD component handling
+Magnifying lamp,1,$20,$20,Amazon,magnifying-lamp,Helpful for small parts
+,,,,
+SOFTWARE & LIBRARIES (Free),,,,,
+Visual Studio Code,Free,,,"https://code.visualstudio.com/",
+PlatformIO IDE Extension,Free,,,"https://platformio.org/",
+Arduino Framework,Free,,,"https://www.arduino.cc/",
+ESP32 Board Support,Free,,,"Via PlatformIO",
+FastLED Library,Free,,,"FastLED for advanced effects",
+ArduinoJson Library,Free,,,"JSON parsing for API",
+ESPAsyncWebServer,Free,,,"Async web server library",
+,,,,
+NOTES:,,,,,
+"Base Project Cost (no audio): ~$70","Price may vary based on supplier, location, and bulk discounts.",
+"Sound Reactive Addition: ~$8-15","Microphone is main cost driver; acoustic components are minimal.",
+"Total with sound reactivity: ~$78-85","Includes all components for full project.",
+"Recommended suppliers:","Amazon (fast shipping), AliExpress (bulk discounts), Local electronics shops (emergency items)",
+"Lead time consideration:","Allow 1-2 weeks for component delivery; AliExpress may take 2-4 weeks",
+"Quantity 1 pricing:","Prices shown are for single units; volume discounts available for 5+ units",
+"Tools note:","Tools are one-time costs; 3D printing can be done at local makerspaces/libraries"
