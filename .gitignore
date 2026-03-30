@@ -1,0 +1,38 @@
+# PlatformIO
+.pio/
+.vscode/
+*.o
+*.a
+*.so
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Build artifacts
+build/
+dist/
+*.hex
+*.elf
+*.bin
+
+# CAD files (keep in repo, but ignore temp files)
+*.bak
+*~$*
+*.asm
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local env overrides
+.env.local
+secrets.txt
