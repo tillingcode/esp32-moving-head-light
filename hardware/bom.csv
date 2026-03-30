@@ -1,0 +1,28 @@
+Part Number,Description,Quantity,Supplier,Unit Cost,Total Cost,Status,Notes
+ESP32-WROOM-32D,ESP32 Microcontroller Module,1,AliExpress/Amazon,10.00,10.00,TBD,WiFi & Bluetooth capable
+SG90,Micro Servo Motor (Pan),1,Amazon/AliExpress,4.00,4.00,TBD,9g standard servo
+SG90,Micro Servo Motor (Tilt),1,Amazon/AliExpress,4.00,4.00,TBD,9g standard servo
+SG90,Micro Servo Motor (Roll - Optional),1,Amazon/AliExpress,4.00,4.00,TBD,9g standard servo
+WS2812B,Addressable RGB LED Module (5V),1,Amazon/AliExpress,2.00,2.00,TBD,"Pre-wired recommended, ~60mA"
+USB-C,USB-C to 5V Power Module,1,Amazon/AliExpress,4.00,4.00,TBD,PD compliant recommended
+18650,Lithium-Ion Battery Cell (3.7V 2600mAh),1,Amazon/AliExpress,4.00,4.00,TBD,"Optional, for battery mode"
+TP4056,USB Lithium Battery Charger Module,1,AliExpress,1.50,1.50,TBD,"Optional, pairs with 18650"
+BEC,5V DC-DC Boost/Regulator Module,1,Amazon/AliExpress,3.00,3.00,TBD,"Stabilizes servo power, prevents brownout"
+Resistor,10kΩ (1/4W),5,Local/Amazon,0.10,0.50,TBD,Pull-ups and general purpose
+Resistor,330Ω (1/4W),3,Local/Amazon,0.10,0.30,TBD,LED current limiting
+Capacitor,100µF (16V Electrolytic),2,Local/Amazon,0.20,0.40,TBD,Power filtering
+Capacitor,0.1µF (Ceramic),5,Local/Amazon,0.10,0.50,TBD,Decoupling capacitors
+Diode,1N4007,3,Local/Amazon,0.05,0.15,TBD,Protection diodes
+LED,3mm Red,1,Local/Amazon,0.20,0.20,TBD,"Status indicator (optional, can omit)"
+Switch,Toggle Switch (SPDT),1,Local/Amazon,0.50,0.50,TBD,Mode selector (USB/Battery)
+Breadboard,Half-size Breadboard,1,Amazon,3.00,3.00,TBD,"For prototyping, not needed for final"
+Jumper Wires,Male-Male Jumper Wire Kit,1,Amazon,2.00,2.00,TBD,Prototyping
+Servo Connectors,Micro Servo Male Connector,3,Amazon,0.30,0.90,TBD,"For disconnectable servos"
+USB Cable,USB-C to USB-A Cable,1,Amazon,2.00,2.00,TBD,Power and programming
+Micro USB,Micro USB Male Connector,1,Amazon,0.50,0.50,TBD,"Optional, if using micro for charging"
+PLA Filament,3D Printer PLA (1kg spool),0.2,Amazon,15.00,3.00,TBD,"~200g for moving head enclosure"
+Heat Shrink,Heat Shrink Tubing Assortment,1,Amazon,2.00,2.00,TBD,Wire insulation
+Solder,Lead-Free Solder (60/40),1,Local,3.00,3.00,TBD,"If hand soldering protoboard"
+Flux,Solder Flux Pen,1,Local,2.00,2.00,TBD,"Optional, improves solder joints"
+,,,,,,
+TOTAL ESTIMATED COST,,,,,68.85,
